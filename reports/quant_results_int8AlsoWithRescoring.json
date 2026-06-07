@@ -1,0 +1,53 @@
+{
+  "FP32": {
+    "Recall@5": 0.8469,
+    "mAP@5": 0.9023,
+    "NDCG@5": 0.9247,
+    "Recall@10": 0.8233,
+    "mAP@10": 0.8852,
+    "NDCG@10": 0.9254,
+    "Recall@20": 0.7985,
+    "mAP@20": 0.8579,
+    "NDCG@20": 0.9213,
+    "latency_p50_ms": 4.21,
+    "latency_p95_ms": 4.81,
+    "latency_p99_ms": 5.33,
+    "memory_mb_estimated": 78.12,
+    "memory_relative_to_fp32": 1.0,
+    "label": "FP32 (no quantization)"
+  },
+  "INT8": {
+    "Recall@5": 0.8469,
+    "mAP@5": 0.9023,
+    "NDCG@5": 0.9247,
+    "Recall@10": 0.8233,
+    "mAP@10": 0.8852,
+    "NDCG@10": 0.9254,
+    "Recall@20": 0.7984,
+    "mAP@20": 0.8579,
+    "NDCG@20": 0.9213,
+    "latency_p50_ms": 4.33,
+    "latency_p95_ms": 5.13,
+    "latency_p99_ms": 5.87,
+    "memory_mb_estimated": 19.53,
+    "memory_relative_to_fp32": 0.25,
+    "label": "INT8 (scalar)"
+  },
+  "Binary": {
+    "Recall@5": 0.8468,
+    "mAP@5": 0.902,
+    "NDCG@5": 0.9244,
+    "Recall@10": 0.8234,
+    "mAP@10": 0.885,
+    "NDCG@10": 0.9251,
+    "Recall@20": 0.7986,
+    "mAP@20": 0.8581,
+    "NDCG@20": 0.9215,
+    "latency_p50_ms": 4.14,
+    "latency_p95_ms": 4.9,
+    "latency_p99_ms": 5.69,
+    "memory_mb_estimated": 2.44,
+    "memory_relative_to_fp32": 0.0312,
+    "label": "Binary (1-bit)"
+  }
+}

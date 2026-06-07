@@ -1,0 +1,77 @@
+# geo-semantic-db 全局配置
+# 默认使用 EuroSAT (轻量, ~2GB); 想换 BigEarthNet 把 data.dataset 改成 bigearthnet 即可
+
+paths:
+  # ── EuroSAT 路径 ──
+  raw_dir:        ./data/raw/eurosat/ds/images/remote_sensing/otherDatasets/sentinel_2/tif/
+  # 若用 BigEarthNet: ./data/raw/BigEarthNet-S2/
+  processed_dir:  ./data/processed/
+  embeddings_dir: ./data/embeddings/
+  clay_ckpt:      ./weights/clay-v1.5.ckpt
+  clay_meta:      ./weights/metadata.yaml
+
+# ── 数据集与预处理 ───────────────────────────────────────────
+data:
+  dataset: eurosat                  # eurosat | bigearthnet
+  sensor: sentinel-2-l2a            # Clay 元数据里使用的传感器键名
+
+  # EuroSAT 每张 .tif 已内置 13 波段; 这里挑用与 Clay 默认 Sentinel-2 流程一致的 10 个
+  # (跳过 B01 海岸气溶胶 / B09 水汽 / B10 卷云 三个 60m 大气波段)
+  band_order: [B02, B03, B04, B05, B06, B07, B08, B8A, B11, B12]
+
+  target_size: 256                  # 上采样到 256x256 以匹配 Clay 默认 chip size
+                                    # (EuroSAT 原图 64x64, 上采样到 256x256 损失可接受)
+
+  # 抽样规模 (论文 §5.1.1)
+  # EuroSAT 总样本约 27,000, 这里建议 20,000 入库 + 2,000 查询
+  sample_size: 20000
+  query_size:  2000
+  stratify_by_main_label: true
+  random_seed: 42
+
+# ── Clay 嵌入生成 ──────────────────────────────────────────
+embedding:
+  batch_size: 32
+  num_workers: 4
+  device: cuda                      # cuda | cpu
+  fp16: false
+  pool: mean
+  l2_normalize: true
+
+# ── Qdrant ─────────────────────────────────────────────────
+qdrant:
+  url: http://localhost:6333
+  collection: eurosat_clay_v15
+  vector_size: 768                  # 实际维度由 step 3 探测后覆盖
+  distance: Cosine
+  shard_number: 2
+  replication_factor: 1
+  on_disk_payload: true
+
+  hnsw:
+    m: 16
+    ef_construct: 128
+    full_scan_threshold: 10000
+
+  quantization:
+    type: scalar                    # scalar | binary | none
+    quantile: 0.99
+    always_ram: true
+
+  payload_index_fields:
+    - tile_id                       # EuroSAT 里就是类别名
+    - labels
+    - geohash
+    - acquired_at
+
+# ── 检索 ───────────────────────────────────────────────────
+retrieval:
+  ef_search: 128                    # 论文 §5.2.1 的 sweet spot
+  default_top_k: 10
+  rerank_candidate_factor: 5
+  proximity_decay_km: 50.0
+
+# ── 评估 ───────────────────────────────────────────────────
+evaluation:
+  ks: [5, 10, 20]
+  output_dir: ./reports/

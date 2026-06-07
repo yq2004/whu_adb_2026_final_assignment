@@ -1,0 +1,34 @@
+# Core
+numpy>=1.24
+pandas>=2.0
+pyarrow>=14.0          # parquet
+PyYAML>=6.0
+tqdm>=4.66
+shapely>=2.0           # 任意多边形空间过滤
+pyproj>=3.6            # 经纬度距离计算
+geohash2>=1.1          # Geohash 编码
+
+# Image / raster IO
+rasterio>=1.3          # 读取 Sentinel-2 GeoTIFF
+Pillow>=10.0
+
+# Deep learning
+torch>=2.1
+torchvision>=0.16
+pytorch-lightning>=2.1
+einops>=0.7
+
+# Clay foundation model — 安装见 https://github.com/Clay-foundation/model
+# claymodel @ git+https://github.com/Clay-foundation/model.git
+
+# Vector DB
+qdrant-client>=1.10
+
+# API
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.5
+
+# Evaluation
+scikit-learn>=1.3
+matplotlib>=3.8

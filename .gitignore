@@ -1,0 +1,34 @@
+# ── 原始影像数据（~9 GB）─────────────────────────────────────────
+# 保留 README.md，忽略影像文件和解压目录
+data/raw/*.zip
+data/raw/eurosat/
+data/raw/EuroSAT_MSI/
+
+# ── 向量嵌入（二进制，~87 MB）────────────────────────────────────
+# 保留 README.md，忽略二进制文件
+data/embeddings/*.npy
+data/embeddings/*.parquet
+
+# ── Qdrant 本地存储（运行时产生，空目录 git 不追踪）──────────────
+data/qdrant_storage/
+
+# ── Clay 模型权重（~1.25 GB）──────────────────────────────────────
+# 保留 README.md 和 metadata.yaml
+weights/*.ckpt
+
+# ── Python 缓存 ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# ── 系统 / IDE ────────────────────────────────────────────────────
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── 日志 ──────────────────────────────────────────────────────────
+*.log

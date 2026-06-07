@@ -1,0 +1,60 @@
+{
+  "overall": {
+    "mAP@20_macro": 0.856,
+    "mAP@20_micro": 0.8579,
+    "n_classes": 10,
+    "n_queries": 1998
+  },
+  "per_class": {
+    "SeaLake": {
+      "mAP@20": 0.9952,
+      "std": 0.0443,
+      "n_query": 214
+    },
+    "Forest": {
+      "mAP@20": 0.972,
+      "std": 0.1044,
+      "n_query": 205
+    },
+    "Residential": {
+      "mAP@20": 0.9054,
+      "std": 0.1853,
+      "n_query": 208
+    },
+    "River": {
+      "mAP@20": 0.9003,
+      "std": 0.196,
+      "n_query": 192
+    },
+    "Industrial": {
+      "mAP@20": 0.8816,
+      "std": 0.2154,
+      "n_query": 172
+    },
+    "PermanentCrop": {
+      "mAP@20": 0.8489,
+      "std": 0.2121,
+      "n_query": 204
+    },
+    "HerbaceousVegetation": {
+      "mAP@20": 0.8475,
+      "std": 0.1883,
+      "n_query": 234
+    },
+    "Pasture": {
+      "mAP@20": 0.8309,
+      "std": 0.2339,
+      "n_query": 141
+    },
+    "AnnualCrop": {
+      "mAP@20": 0.8035,
+      "std": 0.2529,
+      "n_query": 238
+    },
+    "Highway": {
+      "mAP@20": 0.5744,
+      "std": 0.2779,
+      "n_query": 190
+    }
+  }
+}
